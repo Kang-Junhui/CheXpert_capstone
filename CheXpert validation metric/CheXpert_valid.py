@@ -4,6 +4,12 @@
 # Evaluate classification performance on CheXpert 14 pathology labels
 # Metrics: Accuracy, Precision, Recall, F1-Score (per-label and aggregate)
 # ============================================================================
+import gc
+import torch
+# Clear memory
+gc.collect()
+torch.cuda.empty_cache()
+print("Memory cleared and cache emptied")
 
 import numpy as np
 from sklearn.metrics import (
