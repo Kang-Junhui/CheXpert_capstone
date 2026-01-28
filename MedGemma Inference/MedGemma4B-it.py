@@ -1,3 +1,10 @@
+import gc
+import torch
+# Clear memory
+gc.collect()
+torch.cuda.empty_cache()
+
+print("Memory cleared and cache emptied")
 import pandas as pd
 from transformers import pipeline
 from PIL import Image
@@ -18,6 +25,7 @@ df_subset = df_frontal.head(num_samples)
 
 # Define structured prompt with template and terminology
 # CheXpert uses 3-class labels: Positive, Negative, Uncertain
+# BERT-score와 BLEU-score 계산 시에는 프롬프트 수정 필요
 prompt = """You are an expert radiologist analyzing chest X-ray images.
 You must classify each of the 14 CheXpert findings as exactly one of: Positive, Negative, or Uncertain.
 
